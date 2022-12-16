@@ -32,6 +32,10 @@ hyper_client = ["hyper", "hyper-tls", "http-types/hyperium_http", "futures-util"
 native-tls = ["async-native-tls"]
 rustls = ["async-tls", "rustls_crate"]
 
+# curl-impersonate support (curl-specific)
+impersonate-chrome = ["isahc?/impersonate-chrome"]
+impersonate-ff = ["isahc?/impersonate-ff"]
+
 unstable-config = [] # deprecated
 
 [dependencies]
@@ -60,7 +64,7 @@ tokio = { version = "0.2", features = ["time"], optional = true }
 
 # curl_client
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
-isahc = { version = "0.9", optional = true, default-features = false, features = ["http2"]  }
+isahc = { git = "https://github.com/selfisekai/isahc.git", branch = "impersonate-tests", optional = true, default-features = false, features = ["http2"]  }
 
 # wasm_client
 [target.'cfg(target_arch = "wasm32")'.dependencies]
